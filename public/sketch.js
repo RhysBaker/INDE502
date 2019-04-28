@@ -1,4 +1,8 @@
 var socket;
+var r = (255, 0, 0);
+var g = (0, 255, 0);
+var b = (0, 0, 255);
+
 
 function setup() {
     createCanvas(640, 480);
@@ -11,22 +15,26 @@ function setup() {
 
 function newDrawing(data) {
     noStroke();
-    fill(0, 0, 255);
-    ellipse(data.x, data.y, 30, 30);
+    fill(r, g, b);
+    rect(data.x, data.y, 35, 35);
 }
 
+
 function mouseDragged() {
-    console.log("Sending: " + mouseX + "," + mouseY)
+    console.log("Sending: " + mouseX + "," + mouseY + " Colour: " + r + "," + g + "," + b)
 
     var data = {
         x: mouseX,
-        y: mouseY
+        y: mouseY,
+        r: r,
+        g: g,
+        b: b
     }
 
     socket.emit("mouse", data)
 
     noStroke();
     fill(255, 0, 0);
-    ellipse(mouseX, mouseY, 30, 30);
+    rect(mouseX, mouseY, 30, 30);
 }
 
