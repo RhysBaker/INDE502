@@ -29,7 +29,7 @@ function newDrawing(data) {
     noStroke();
     //takes the data for colour and position from socket
     fill(data.r,data.g,data.b);
-    rect(data.x, data.y, 35, 35);
+    rect(data.x, data.y, 15, 15);
 }
 
 
@@ -59,7 +59,7 @@ function mouseDragged() {
     //draw when the user drags the mouse// possibly changed to click if grid is set up
     noStroke();
     fill(r, g, b);
-    rect(mouseX, mouseY, 30, 30);
+    rect(mouseX, mouseY, 15, 15);
 }
 
 
@@ -78,4 +78,3 @@ function keyTyped() {
         }
     }
   }
-
