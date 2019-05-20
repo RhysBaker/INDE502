@@ -4,21 +4,21 @@ var rSlider, gSlider, bSlider;
 
 //set up canvas bind it to div, setup socket connections and create rgb sliders
 function setup() {
-    var canvas = createCanvas(1000, 800);
+    var canvas = createCanvas(700, 700);
     canvas.parent('sketch-holder');
     background(240);
 
-    socket = io.connect('http://localhost:3000');
+    socket = io.connect('https://inde502-placeit.herokuapp.com/');
     socket.on("mouse", newDrawing);
 
     //create slider min and max values and current value
     rSlider = createSlider(0, 255, 255);
     //set position of the slider
-    rSlider.position(20, 140);
+    rSlider.parent("rSlider");
     gSlider = createSlider(0, 255, 0);
-    gSlider.position(20, 170);
+    gSlider.parent("gSlider");
     bSlider = createSlider(0, 255, 0);
-    bSlider.position(20, 200);
+    bSlider.parent("bSlider");
 
 }
 
@@ -29,7 +29,7 @@ function newDrawing(data) {
     noStroke();
     //takes the data for colour and position from socket
     fill(data.r,data.g,data.b);
-    rect(data.x, data.y, 35, 35);
+    ellipse(data.x, data.y, 15, 15);
 }
 
 
@@ -59,7 +59,7 @@ function mouseDragged() {
     //draw when the user drags the mouse// possibly changed to click if grid is set up
     noStroke();
     fill(r, g, b);
-    rect(mouseX, mouseY, 30, 30);
+    ellipse(mouseX, mouseY, 15, 15);
 }
 
 
@@ -78,4 +78,3 @@ function keyTyped() {
         }
     }
   }
-
